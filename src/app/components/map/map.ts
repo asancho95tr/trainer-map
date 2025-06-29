@@ -24,10 +24,10 @@ export class MapComponent implements AfterViewInit {
 
     const zoom = 17.5;
     this.map = L.map('map', {
-      maxBounds: bounds, // limita el área navegable
-      maxBoundsViscosity: 0, // bloquea el movimiento fuera del área
-      minZoom: zoom,
-      maxZoom: zoom,
+      // maxBounds: bounds, // limita el área navegable
+      // maxBoundsViscosity: 0, // bloquea el movimiento fuera del área
+      // minZoom: zoom,
+      // maxZoom: zoom,
     }).setView([41.8333, -1.5333], zoom); // centro de Borja
 
     L.tileLayer(
