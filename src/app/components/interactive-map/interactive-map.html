@@ -1,22 +1,43 @@
-<div class="image-container" (click)="clearSelection()">
-  <img [src]="imageSrc" alt="Imagen interactiva" />
-  @if(showGrid) {
-  <div class="grid-overlay"></div>
-  } @for (marker of markers; track marker; let i = $index) {
-  <div
-    class="marker"
-    [style.left.%]="marker.x"
-    [style.top.%]="marker.y"
-    (click)="selectMarker(marker); $event.stopPropagation()"
-  >
-    ● @if(selectedMarker === marker) {
-    <div class="tooltip">
-      {{ marker.info }}
+<div class="map-layout">
+  <!-- Imagen interactiva -->
+  <div class="image-wrapper">
+    <div class="image-container" (click)="clearSelection()">
+      <img [src]="imageSrc" alt="Imagen interactiva" />
+
+      <!-- Marcadores -->
+      @for (marker of markers; track marker; let i = $index) {
+      <div
+        class="marker"
+        [style.left.%]="marker.x"
+        [style.top.%]="marker.y"
+        (click)="selectMarker(marker); $event.stopPropagation()"
+      >
+        ●
+      </div>
+      }
     </div>
+  </div>
+
+  <!-- Panel fijo de información -->
+  <div class="info-panel">
+    @if(selectedMarker) {
+    <h3>{{ selectedMarker.info }}</h3>
+    <div class="images">
+      @for (character of selectedMarker.characters; track character) {
+      <img
+        class="character"
+        [src]="character.image"
+        alt="{{ character.name }}"
+      />
+      }
+    </div>
+    } @if(!selectedMarker) {
+    <p>Haz clic en un marcador para ver los detalles.</p>
     }
   </div>
-  }
 </div>
+@if(!isPro) {
 <button (click)="toggleGrid()">
   {{ showGrid ? "Ocultar" : "Mostrar" }} cuadrícula
 </button>
+}

@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   firebaseConfig: {
     apiKey: 'AIzaSyB1lGQiPcBL-OSpb35rtdYwMX11sAjkAQk',
     authDomain: 'trainer-map-3be6b.firebaseapp.com',
