@@ -1,8 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
-// import { Auth, GoogleAuthProvider } from '@angular/fire/auth';
-// import { ApiService } from './services/api.service';
-// import { signInWithPopup } from 'firebase/auth';
-import { MapComponent } from './components/map/map';
+import { Component } from '@angular/core';
 import { InteractiveMapComponent } from './components/interactive-map/interactive-map';
 
 @Component({
@@ -10,39 +6,9 @@ import { InteractiveMapComponent } from './components/interactive-map/interactiv
   standalone: true,
   template: `
     <div class="p-4">
-      <!-- @if(loggedIn()) {
-      } -->
       <app-interactive-map />
-      <!-- <app-map /> -->
     </div>
   `,
-  imports: [MapComponent, InteractiveMapComponent],
+  imports: [InteractiveMapComponent],
 })
-export class AppComponent {
-  // private auth = inject(Auth);
-  // private api = inject(ApiService);
-
-  loggedIn = signal(false);
-
-  ngOnInit() {
-    // this.loginWithGoogle();
-  }
-
-  // async loginWithGoogle() {
-  //   const provider = new GoogleAuthProvider();
-  //   try {
-  //     const result = await signInWithPopup(this.auth, provider);
-  //     this.loggedIn.set(true);
-  //   } catch (error: any) {
-  //     this.loggedIn.set(false);
-  //     console.error('Error al iniciar sesión con Google:', error);
-  //   }
-  // }
-  // async callApi() {
-  //   try {
-  //     const res: any = await this.api.getProtectedData();
-  //   } catch (err: any) {
-  //     console.log(err.error || 'Error al llamar API');
-  //   }
-  // }
-}
+export class AppComponent {}
