@@ -66,8 +66,39 @@
     }
   }
 
+  .badges {
+    display: flex;
+    column-gap: 8px;
+    row-gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 16px;
+
+    .badge-image {
+      height: 72px;
+      image-rendering: pixelated;
+      &.locked {
+        filter: grayscale(100%) brightness(0.6) contrast(1.2);
+        opacity: 0.6;
+
+        &::after {
+          content: "🔒";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          font-size: 32px;
+          transform: translate(-50%, -50%);
+          color: #000;
+          text-shadow: 1px 1px 2px #fff;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
   h3 {
     margin-top: 0;
+    text-align: center;
   }
 
   .images {

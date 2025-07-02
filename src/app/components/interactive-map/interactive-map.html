@@ -31,6 +31,20 @@
         alt="{{ selectedMarker.badge.name }}"
       />
     </div>
+    } @if(selectedMarker.obtainedBadges) {
+    <h3>Medallas obtenidas</h3>
+    <div class="badges">
+      @for (badge of BADGES; track badge) {
+      <img
+        [src]="badge.image | noCache"
+        alt="{{ badge.name }}"
+        class="badge-image"
+        [ngClass]="{
+          locked: !selectedMarker.obtainedBadges.includes(badge)
+        }"
+      />
+      }
+    </div>
     }
     <div class="images">
       @for (character of selectedMarker.characters; track character) {

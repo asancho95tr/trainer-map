@@ -12,6 +12,7 @@ import {
   BADGE_6,
   BADGE_7,
   BADGE_8,
+  BADGES,
   BAR,
   CLARA,
   IRINA_Y_DAVID,
@@ -26,6 +27,7 @@ import {
   SOF,
   SORAYA,
 } from '@utils/constants';
+import { NgClass } from '@angular/common';
 
 interface Marker {
   x: number; // porcentaje horizontal
@@ -49,7 +51,7 @@ type Badge = Character;
   selector: 'app-interactive-map',
   templateUrl: './interactive-map.html',
   styleUrls: ['./interactive-map.scss'],
-  imports: [NoCachePipe],
+  imports: [NoCachePipe, NgClass],
 })
 export class InteractiveMapComponent {
   imageSrc = 'assets/Mapa limpio.png';
@@ -87,34 +89,35 @@ export class InteractiveMapComponent {
       y: 37,
       info: '',
       characters: [JUN, BAR],
+      obtainedBadges: [],
     },
     {
       x: 40.5,
       y: 28,
       info: '',
       characters: [RU],
-      badge: BADGE_6,
+      badge: BADGE_3,
     },
     {
       x: 48,
       y: 37,
       info: '',
       characters: [IRINA_Y_DAVID],
-      badge: BADGE_1,
+      badge: BADGE_6,
     },
     {
       x: 77.2,
       y: 26.2,
       info: '',
       characters: [LU],
-      badge: BADGE_8,
+      badge: BADGE_1,
     },
     {
       x: 41.5,
       y: 42.5,
       info: '',
       characters: [NOAH],
-      badge: BADGE_3,
+      badge: BADGE_8,
     },
   ];
   selectedMarker?: Marker;
@@ -123,6 +126,8 @@ export class InteractiveMapComponent {
   get mapImageHeight() {
     return this.mapImage?.nativeElement.offsetHeight ?? 0;
   }
+
+  BADGES = BADGES;
 
   selectMarker(marker: Marker) {
     this.selectedMarker = marker;

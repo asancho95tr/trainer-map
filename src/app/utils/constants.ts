@@ -48,3 +48,13 @@ export const BADGE_8 = {
   name: 'Tierra',
   image: 'assets/gym-badges/earth.png',
 };
+export const BADGES = [
+  BADGE_1,
+  BADGE_2,
+  BADGE_3,
+  BADGE_4,
+  BADGE_5,
+  BADGE_6,
+  BADGE_7,
+  BADGE_8,
+];
