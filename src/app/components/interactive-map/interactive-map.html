@@ -12,6 +12,7 @@
       @for (marker of markers; track marker; let i = $index) {
       <div
         class="marker"
+        [class.player]="marker.characters === junBarCharacter?.characters"
         [style.left.%]="marker.x"
         [style.top.%]="marker.y"
         (click)="selectMarker(marker); $event.stopPropagation()"
