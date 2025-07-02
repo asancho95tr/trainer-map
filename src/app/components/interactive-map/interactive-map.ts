@@ -1,6 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { NoCachePipe } from '@shared/pipes/no-cache.pipe';
-import { environment } from '@environments/environment';
 import {
   ANDREA,
   ANDRES,
@@ -28,6 +27,8 @@ import {
   SORAYA,
 } from '@utils/constants';
 import { NgClass } from '@angular/common';
+import { SoundService } from '@app/services/sound.service';
+import { PaperComponent } from '../paper/paper.component';
 
 interface Marker {
   x: number; // porcentaje horizontal
@@ -51,7 +52,7 @@ type Badge = Character;
   selector: 'app-interactive-map',
   templateUrl: './interactive-map.html',
   styleUrls: ['./interactive-map.scss'],
-  imports: [NoCachePipe, NgClass],
+  imports: [NoCachePipe, NgClass, PaperComponent],
 })
 export class InteractiveMapComponent {
   imageSrc = 'assets/Mapa limpio.png';
@@ -59,28 +60,28 @@ export class InteractiveMapComponent {
     {
       x: 20,
       y: 16,
-      info: '',
+      info: 'Párrafo con información de la prueba',
       characters: [ANDRES],
       badge: BADGE_5,
     },
     {
       x: 76.5,
       y: 90.5,
-      info: '',
+      info: 'Párrafo con información de la prueba',
       characters: [SOF, SIL, LUIS],
       badge: BADGE_2,
     },
     {
       x: 25.5,
       y: 27,
-      info: '',
+      info: 'Párrafo con información de la prueba',
       characters: [CLARA, SERGIO],
       badge: BADGE_4,
     },
     {
       x: 23.5,
       y: 32,
-      info: '',
+      info: 'Párrafo con información de la prueba',
       characters: [ANDREA, JAIME, SORAYA],
       badge: BADGE_7,
     },
@@ -94,28 +95,28 @@ export class InteractiveMapComponent {
     {
       x: 40.5,
       y: 28,
-      info: '',
+      info: 'Párrafo con información de la prueba',
       characters: [RU],
       badge: BADGE_3,
     },
     {
       x: 48,
       y: 37,
-      info: '',
+      info: 'Párrafo con información de la prueba',
       characters: [IRINA_Y_DAVID],
       badge: BADGE_6,
     },
     {
       x: 77.2,
       y: 26.2,
-      info: '',
+      info: 'Párrafo con información de la prueba',
       characters: [LU],
       badge: BADGE_1,
     },
     {
       x: 41.5,
       y: 42.5,
-      info: '',
+      info: 'Párrafo con información de la prueba',
       characters: [NOAH],
       badge: BADGE_8,
     },
@@ -123,13 +124,23 @@ export class InteractiveMapComponent {
   selectedMarker?: Marker;
   @ViewChild('mapImage') mapImage?: ElementRef<HTMLDivElement>;
 
+  soundService = inject(SoundService);
+
   get mapImageHeight() {
     return this.mapImage?.nativeElement.offsetHeight ?? 0;
   }
 
   BADGES = BADGES;
 
+  get junBarCharacter() {
+    return this.markers.find(
+      (marker) =>
+        marker.characters.includes(JUN) && marker.characters.includes(BAR)
+    );
+  }
+
   selectMarker(marker: Marker) {
+    this.soundService.play('assets/sounds/menu.mp3');
     this.selectedMarker = marker;
   }
 

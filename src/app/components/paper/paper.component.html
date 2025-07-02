@@ -1,0 +1,20 @@
+<div class="diploma-wrapper">
+  <div #diplomaRef class="diploma">
+    <h1 class="title">¡Felicidades!</h1>
+    <p class="text">
+      Este diploma certifica que
+      <span class="highlight">{{ playerName }}</span
+      ><br />
+      han completado con éxito la pruebas.
+    </p>
+
+    <div class="signature">
+      <p>TSK 2.0</p>
+      <p class="date">{{ date }}</p>
+    </div>
+  </div>
+
+  <button class="download-button" (click)="downloadDiploma()">
+    Descargar Diploma
+  </button>
+</div>
