@@ -56,13 +56,13 @@ export class InteractiveMapComponent {
     },
     {
       x: 25.5,
-      y: 28,
+      y: 27,
       info: 'Clara y Sergio',
       characters: [CLARA, SERGIO],
     },
     {
-      x: 24,
-      y: 31,
+      x: 23.5,
+      y: 32,
       info: 'Andrea y Jaime',
       characters: [ANDREA, JAIME],
     },
@@ -104,15 +104,6 @@ export class InteractiveMapComponent {
     },
   ];
   selectedMarker?: Marker;
-  showGrid = false;
-
-  get isPro() {
-    return environment.production;
-  }
-
-  toggleGrid() {
-    this.showGrid = !this.showGrid;
-  }
 
   selectMarker(marker: Marker) {
     this.selectedMarker = marker;
