@@ -1,6 +1,6 @@
 <div class="map-layout">
   <!-- Imagen interactiva -->
-  <div class="image-wrapper">
+  <div class="image-wrapper" #mapImage>
     <div class="image-container" (click)="clearSelection()">
       <img [src]="imageSrc" alt="Mapa interactivo" />
 
@@ -19,18 +19,32 @@
   </div>
 
   <!-- Panel fijo de información -->
-  <div class="info-panel">
-    @if(selectedMarker) {
-    <h3>{{ selectedMarker.info }}</h3>
+  <div
+    class="info-panel"
+    [style.height]="'calc(100vh - ' + (mapImageHeight + 80) + 'px)'"
+  >
+    @if(selectedMarker) { @if(selectedMarker.badge) {
+    <div class="badge">
+      <h3>Medalla {{ selectedMarker.badge.name }}</h3>
+      <img
+        [src]="selectedMarker.badge.image | noCache"
+        alt="{{ selectedMarker.badge.name }}"
+      />
+    </div>
+    }
     <div class="images">
       @for (character of selectedMarker.characters; track character) {
-      <img
-        class="character"
-        [src]="character.image | noCache"
-        alt="{{ character.name }}"
-      />
+      <div class="images__trianer">
+        <img
+          class="character"
+          [src]="character.image | noCache"
+          alt="{{ character.name }}"
+        />
+        <h3>{{ character.name }}</h3>
+      </div>
       }
     </div>
+    <p>{{ selectedMarker.info }}</p>
     } @if(!selectedMarker) {
     <p>Haz clic en un marcador para ver los detalles.</p>
     }
