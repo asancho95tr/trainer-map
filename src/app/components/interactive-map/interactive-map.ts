@@ -1,4 +1,12 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  Input,
+  signal,
+  ViewChild,
+  WritableSignal,
+} from '@angular/core';
 import { NoCachePipe } from '@shared/pipes/no-cache.pipe';
 import {
   ANDREA,
@@ -29,24 +37,9 @@ import {
 import { NgClass } from '@angular/common';
 import { SoundService } from '@app/services/sound.service';
 import { PaperComponent } from '../paper/paper.component';
-
-interface Marker {
-  x: number; // porcentaje horizontal
-  y: number; // porcentaje vertical
-  info: string;
-  characters: Character[];
-  badge?: Badge; // medalla asociada
-  obtainedBadges?: Badge[]; // medallas obtenidas
-  position?: 'top' | 'bottom'; // posición del tooltip
-  alignment?: 'left' | 'right' | 'center'; // alineación del tooltip
-}
-
-interface Character {
-  name: string;
-  image: string;
-}
-
-type Badge = Character;
+import { Badge, Marker } from '@app/models/marker.interface';
+import { Database } from '@angular/fire/database';
+import { onValue, ref } from 'firebase/database';
 
 @Component({
   selector: 'app-interactive-map',
@@ -90,7 +83,6 @@ export class InteractiveMapComponent {
       y: 37,
       info: '',
       characters: [JUN, BAR],
-      obtainedBadges: [],
     },
     {
       x: 40.5,
@@ -139,12 +131,30 @@ export class InteractiveMapComponent {
     );
   }
 
+  db = inject(Database);
+  obtainedBadges: WritableSignal<Badge[]> = signal([]);
+
+  ngOnInit() {
+    this.#refreshBadges();
+  }
   selectMarker(marker: Marker) {
+    this.#refreshBadges();
     this.soundService.play('assets/sounds/menu.mp3');
     this.selectedMarker = marker;
   }
 
   clearSelection() {
     this.selectedMarker = undefined;
+  }
+
+  #refreshBadges() {
+    const badges = ref(this.db, 'badges');
+    onValue(badges, (snapshot) => {
+      const data = snapshot.val();
+      const badgesIds: number[] = data
+        .split(',')
+        .map((badge: string) => Number(badge.trim()));
+      this.obtainedBadges.set(badgesIds.map((id) => BADGES[id - 1]));
+    });
   }
 }

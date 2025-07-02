@@ -11,6 +11,11 @@ import {
   withEventReplay,
 } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
+import { provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp } from 'firebase/app';
+import { environment } from '@environments/environment';
+import { provideDatabase } from '@angular/fire/database';
+import { getDatabase } from 'firebase/database';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,5 +24,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideDatabase(() => getDatabase()),
   ],
 };

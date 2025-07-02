@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { InteractiveMapComponent } from './components/interactive-map/interactive-map';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,6 @@ import { InteractiveMapComponent } from './components/interactive-map/interactiv
       <app-interactive-map />
     </div>
   `,
-  imports: [InteractiveMapComponent],
+  imports: [InteractiveMapComponent, AngularFireDatabaseModule],
 })
 export class AppComponent {}
