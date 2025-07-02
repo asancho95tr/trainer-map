@@ -2,7 +2,7 @@
   <!-- Imagen interactiva -->
   <div class="image-wrapper">
     <div class="image-container" (click)="clearSelection()">
-      <img [src]="imageSrc" alt="Imagen interactiva" />
+      <img [src]="imageSrc" alt="Mapa interactivo" />
 
       <!-- Marcadores -->
       @for (marker of markers; track marker; let i = $index) {
@@ -36,8 +36,3 @@
     }
   </div>
 </div>
-@if(!isPro) {
-<button (click)="toggleGrid()">
-  {{ showGrid ? "Ocultar" : "Mostrar" }} cuadrícula
-</button>
-}
