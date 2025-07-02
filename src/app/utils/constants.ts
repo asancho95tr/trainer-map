@@ -3,11 +3,11 @@ export const ANDRES = { name: 'Andrés', image: 'assets/trainers/Andrés.png' };
 export const SOF = { name: 'Sof', image: 'assets/trainers/Sof.png' };
 export const LUIS = { name: 'Luis', image: 'assets/trainers/Luis.png' };
 export const SIL = { name: 'Sil', image: 'assets/trainers/Sil.png' };
-export const CLARA = { name: 'Clara', image: 'assets/trainers/Clara.png' };
+export const CLARA = { name: 'Unicornio', image: 'assets/trainers/Clara.png' };
 export const SERGIO = { name: 'Sergio', image: 'assets/trainers/Sergio.png' };
 export const ANDREA = { name: 'Andrea', image: 'assets/trainers/Andrea.png' };
 export const JAIME = { name: 'Jaime', image: 'assets/trainers/Jaime.png' };
-export const BAR = { name: 'Bar', image: 'assets/trainers/Bar.png' };
+export const BAR = { name: 'Barby', image: 'assets/trainers/Bar.png' };
 export const JUN = { name: 'Jun', image: 'assets/trainers/Jun.png' };
 export const RU = { name: 'Ru', image: 'assets/trainers/Ru.png' };
 export const LU = { name: 'Lu', image: 'assets/trainers/Lu.png' };
@@ -32,7 +32,7 @@ export const BADGE_3 = {
   image: 'assets/gym-badges/thunder.png',
 };
 export const BADGE_4 = {
-  name: 'Acoiris',
+  name: 'Arcoiris',
   image: 'assets/gym-badges/rainbow.png',
 };
 export const BADGE_5 = { name: 'Alma', image: 'assets/gym-badges/soul.png' };

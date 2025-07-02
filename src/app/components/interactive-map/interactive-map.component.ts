@@ -43,8 +43,8 @@ import { onValue, ref } from 'firebase/database';
 
 @Component({
   selector: 'app-interactive-map',
-  templateUrl: './interactive-map.html',
-  styleUrls: ['./interactive-map.scss'],
+  templateUrl: './interactive-map.component.html',
+  styleUrls: ['./interactive-map.component.scss'],
   imports: [NoCachePipe, NgClass, PaperComponent],
 })
 export class InteractiveMapComponent {

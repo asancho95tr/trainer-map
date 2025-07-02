@@ -1,5 +1,5 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
-import { InteractiveMapComponent } from './components/interactive-map/interactive-map';
+import { InteractiveMapComponent } from './components/interactive-map/interactive-map.component';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 @Component({
