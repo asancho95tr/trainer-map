@@ -2,44 +2,23 @@ import {
   Component,
   ElementRef,
   inject,
-  Input,
   signal,
   ViewChild,
   WritableSignal,
 } from '@angular/core';
 import { NoCachePipe } from '@shared/pipes/no-cache.pipe';
-import {
-  ANDREA,
-  ANDRES,
-  BADGE_1,
-  BADGE_2,
-  BADGE_3,
-  BADGE_4,
-  BADGE_5,
-  BADGE_6,
-  BADGE_7,
-  BADGE_8,
-  BADGES,
-  BAR,
-  CLARA,
-  IRINA_Y_DAVID,
-  JAIME,
-  JUN,
-  LU,
-  LUIS,
-  NOAH,
-  RU,
-  SERGIO,
-  SIL,
-  SOF,
-  SORAYA,
-} from '@utils/constants';
+import { TRAINERS, BADGES, BADGES_LIST } from '@utils/constants';
 import { NgClass } from '@angular/common';
 import { SoundService } from '@app/services/sound.service';
-import { PaperComponent } from '../paper/paper.component';
-import { Badge, Marker } from '@app/models/marker.interface';
+import { PaperComponent } from './components/paper/paper.component';
+import {
+  Badge,
+  Marker,
+} from '@app/pages/interactive-map/models/marker.interface';
 import { Database } from '@angular/fire/database';
 import { onValue, ref } from 'firebase/database';
+import { Bagdes } from '@app/models/badges.enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-interactive-map',
@@ -51,66 +30,75 @@ export class InteractiveMapComponent {
   imageSrc = 'assets/Mapa limpio.png';
   markers: Marker[] = [
     {
+      id: '5',
       x: 20,
       y: 16,
       info: 'Párrafo con información de la prueba',
-      characters: [ANDRES],
-      badge: BADGE_5,
+      characters: [TRAINERS.ANDRES],
+      badge: BADGES.BADGE_5,
     },
     {
+      id: '2',
       x: 76.5,
       y: 90.5,
       info: 'Párrafo con información de la prueba',
-      characters: [SOF, SIL, LUIS],
-      badge: BADGE_2,
+      characters: [TRAINERS.SOF, TRAINERS.SIL, TRAINERS.LUIS],
+      badge: BADGES.BADGE_2,
     },
     {
+      id: '4',
       x: 25.5,
       y: 27,
       info: 'Párrafo con información de la prueba',
-      characters: [CLARA, SERGIO],
-      badge: BADGE_4,
+      characters: [TRAINERS.CLARA, TRAINERS.SERGIO],
+      badge: BADGES.BADGE_4,
     },
     {
+      id: '7',
       x: 23.5,
       y: 32,
       info: 'Párrafo con información de la prueba',
-      characters: [ANDREA, JAIME, SORAYA],
-      badge: BADGE_7,
+      characters: [TRAINERS.ANDREA, TRAINERS.JAIME, TRAINERS.SORAYA],
+      badge: BADGES.BADGE_7,
     },
     {
+      id: '0',
       x: 30,
       y: 37,
       info: '',
-      characters: [JUN, BAR],
+      characters: [TRAINERS.JUN, TRAINERS.BAR],
     },
     {
+      id: '3',
       x: 40.5,
       y: 28,
       info: 'Párrafo con información de la prueba',
-      characters: [RU],
-      badge: BADGE_3,
+      characters: [TRAINERS.RU],
+      badge: BADGES.BADGE_3,
     },
     {
+      id: '6',
       x: 48,
       y: 37,
       info: 'Párrafo con información de la prueba',
-      characters: [IRINA_Y_DAVID],
-      badge: BADGE_6,
+      characters: [TRAINERS.IRINA_Y_DAVID],
+      badge: BADGES.BADGE_6,
     },
     {
+      id: '1',
       x: 77.2,
       y: 26.2,
       info: 'Párrafo con información de la prueba',
-      characters: [LU],
-      badge: BADGE_1,
+      characters: [TRAINERS.LU],
+      badge: BADGES.BADGE_1,
     },
     {
+      id: '8',
       x: 41.5,
       y: 42.5,
       info: 'Párrafo con información de la prueba',
-      characters: [NOAH],
-      badge: BADGE_8,
+      characters: [TRAINERS.NOAH],
+      badge: BADGES.BADGE_8,
     },
   ];
   selectedMarker?: Marker;
@@ -122,29 +110,43 @@ export class InteractiveMapComponent {
     return this.mapImage?.nativeElement.offsetHeight ?? 0;
   }
 
-  BADGES = BADGES;
+  BADGES_LIST = BADGES_LIST;
 
   get junBarCharacter() {
     return this.markers.find(
       (marker) =>
-        marker.characters.includes(JUN) && marker.characters.includes(BAR)
+        marker.characters.includes(TRAINERS.JUN) &&
+        marker.characters.includes(TRAINERS.BAR)
     );
   }
 
   db = inject(Database);
+  #router = inject(Router);
   obtainedBadges: WritableSignal<Badge[]> = signal([]);
+  clues: WritableSignal<string[]> = signal([]);
+
+  get showClue(): boolean {
+    return (
+      this.clues().includes(this.selectedMarker?.id ?? '') ||
+      this.selectedMarker?.id === '0'
+    );
+  }
 
   ngOnInit() {
     this.#refreshBadges();
+    this.#refreshClues();
   }
   selectMarker(marker: Marker) {
-    this.#refreshBadges();
     this.soundService.play('assets/sounds/menu.mp3');
     this.selectedMarker = marker;
   }
 
   clearSelection() {
     this.selectedMarker = undefined;
+  }
+
+  obtainClue() {
+    this.#router.navigate(['memory-game', this.selectedMarker?.id]);
   }
 
   #refreshBadges() {
@@ -154,7 +156,20 @@ export class InteractiveMapComponent {
       const badgesIds: number[] = data
         .split(',')
         .map((badge: string) => Number(badge.trim()));
-      this.obtainedBadges.set(badgesIds.map((id) => BADGES[id - 1]));
+      this.obtainedBadges.set([
+        ...new Set(badgesIds.map((id) => BADGES_LIST[id - 1])),
+      ]);
+    });
+  }
+
+  #refreshClues() {
+    const clues = ref(this.db, 'clues');
+    onValue(clues, (snapshot) => {
+      const data = snapshot.val();
+      const cluesIds: string[] = data
+        .split(',')
+        .map((clue: string) => [new Set(...clue.trim())]);
+      this.clues.set(cluesIds);
     });
   }
 }

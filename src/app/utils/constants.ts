@@ -18,6 +18,24 @@ export const IRINA_Y_DAVID = {
   image: 'assets/trainers/Irina y David.png',
 };
 
+export const TRAINERS = {
+  ANDRES,
+  SOF,
+  LUIS,
+  SIL,
+  CLARA,
+  SERGIO,
+  ANDREA,
+  JAIME,
+  BAR,
+  JUN,
+  RU,
+  LU,
+  NOAH,
+  SORAYA,
+  IRINA_Y_DAVID,
+};
+
 //Medallas
 export const BADGE_1 = {
   name: 'Roca',
@@ -48,7 +66,17 @@ export const BADGE_8 = {
   name: 'Tierra',
   image: 'assets/gym-badges/earth.png',
 };
-export const BADGES = [
+export const BADGES = {
+  BADGE_1,
+  BADGE_2,
+  BADGE_3,
+  BADGE_4,
+  BADGE_5,
+  BADGE_6,
+  BADGE_7,
+  BADGE_8,
+};
+export const BADGES_LIST = [
   BADGE_1,
   BADGE_2,
   BADGE_3,

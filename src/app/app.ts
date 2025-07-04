@@ -1,15 +1,15 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
-import { InteractiveMapComponent } from './components/interactive-map/interactive-map.component';
+import { Component } from '@angular/core';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   template: `
     <div class="p-4">
-      <app-interactive-map />
+      <router-outlet></router-outlet>
     </div>
   `,
-  imports: [InteractiveMapComponent, AngularFireDatabaseModule],
+  imports: [RouterModule, AngularFireDatabaseModule],
 })
 export class AppComponent {}

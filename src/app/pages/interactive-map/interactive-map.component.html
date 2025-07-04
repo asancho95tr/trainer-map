@@ -1,4 +1,4 @@
-@if(obtainedBadges().length === BADGES.length) {
+@if(obtainedBadges().length === BADGES_LIST.length) {
 <app-paper [playerName]="'Junior y Bárbara'"></app-paper>
 }
 
@@ -39,7 +39,7 @@
     } @if(selectedMarker.characters === junBarCharacter?.characters) {
     <h3>Medallas obtenidas</h3>
     <div class="badges">
-      @for (badge of BADGES; track badge) {
+      @for (badge of BADGES_LIST; track badge) {
       <img
         [src]="badge.image | noCache"
         alt="{{ badge.name }}"
@@ -63,8 +63,11 @@
       </div>
       }
     </div>
+    @if(showClue) {
     <p>{{ selectedMarker.info }}</p>
-    } @if(!selectedMarker) {
+    } @else {
+    <button (click)="obtainClue()">Obtener pista</button>
+    } } @if(!selectedMarker) {
     <p>Haz clic en un marcador para ver los detalles.</p>
     }
   </div>

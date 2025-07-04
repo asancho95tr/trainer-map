@@ -1,0 +1,20 @@
+<h2 class="text-xl text-center mb-4">Ronda {{ round() }}</h2>
+
+<div class="grid grid-cols-4 gap-2 justify-center max-w-md mx-auto">
+  @for (card of cards(); track card.id) {
+  <div
+    class="card"
+    [class.flipped]="card.flipped || card.matched"
+    (click)="flipCard(card)"
+  >
+    <img
+      *ngIf="card.flipped || card.matched"
+      [src]="card.image"
+      alt="{{ card.name }}"
+    />
+    <div *ngIf="!card.flipped && !card.matched" class="back">?</div>
+  </div>
+  }
+</div>
+
+<div class="text-center mt-4">Aciertos seguidos: {{ successStreak() }} / 3</div>
