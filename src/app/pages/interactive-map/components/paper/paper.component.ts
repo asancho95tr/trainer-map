@@ -1,5 +1,5 @@
 import { Component, ElementRef, inject, Input, ViewChild } from '@angular/core';
-import { SoundService } from '@app/services/sound.service';
+import { SoundService } from '@app/shared/services/sound.service';
 import html2canvas from 'html2canvas';
 
 @Component({

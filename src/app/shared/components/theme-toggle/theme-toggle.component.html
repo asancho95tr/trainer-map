@@ -1,0 +1,10 @@
+<div class="pokeball-wrapper">
+  <div class="pokeball" 
+       [class.ultraball]="isDark()" 
+       [class.spin]="isSpinning"
+       (animationend)="onAnimationEnd()"
+       (click)="toggleTheme()">
+    <div class="stripe left"></div>
+    <div class="stripe right"></div>
+  </div>
+</div>

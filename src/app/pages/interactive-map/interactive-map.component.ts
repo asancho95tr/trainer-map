@@ -9,7 +9,7 @@ import {
 import { NoCachePipe } from '@shared/pipes/no-cache.pipe';
 import { TRAINERS, BADGES, BADGES_LIST } from '@utils/constants';
 import { NgClass } from '@angular/common';
-import { SoundService } from '@app/services/sound.service';
+import { SoundService } from '@app/shared/services/sound.service';
 import { PaperComponent } from './components/paper/paper.component';
 import {
   Badge,
@@ -19,15 +19,19 @@ import { Database } from '@angular/fire/database';
 import { onValue, ref } from 'firebase/database';
 import { Bagdes } from '@app/models/badges.enum';
 import { Router } from '@angular/router';
+import { environment } from '@environments/environment';
+import { ThemeToggleComponent } from '@app/shared/components/theme-toggle/theme-toggle.component';
 
 @Component({
   selector: 'app-interactive-map',
   templateUrl: './interactive-map.component.html',
   styleUrls: ['./interactive-map.component.scss'],
-  imports: [NoCachePipe, NgClass, PaperComponent],
+  imports: [NoCachePipe, NgClass, PaperComponent, ThemeToggleComponent],
 })
 export class InteractiveMapComponent {
-  imageSrc = 'assets/Mapa limpio.png';
+  get imageSrc() {
+    return `assets/map-${environment.theme}.png`;
+  }
   markers: Marker[] = [
     {
       id: '5',
@@ -168,8 +172,10 @@ export class InteractiveMapComponent {
       const data = snapshot.val();
       const cluesIds: string[] = data
         .split(',')
-        .map((clue: string) => [new Set(...clue.trim())]);
-      this.clues.set(cluesIds);
+        .map((clue: string) => clue.trim());
+      this.clues.set([
+        ...new Set(cluesIds)
+      ]);
     });
   }
 }
