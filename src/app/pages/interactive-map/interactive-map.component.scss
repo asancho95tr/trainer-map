@@ -60,7 +60,6 @@ app-theme-toggle {
   border: 4px double #3b3b3b;
   padding: 16px;
   overflow-y: auto;
-  min-height: 360px;
   height: fit-content;
 
   @media (max-width: 768px) {
@@ -139,5 +138,12 @@ app-theme-toggle {
 
   p {
     font-size: 14px;
+  }
+}
+
+/* Escritorio pequeño / tablet */
+@media only screen and (min-width: 768px){
+  .info-panel {
+    min-height: 360px;
   }
 }
