@@ -54,7 +54,7 @@ export class InteractiveMapComponent {
       x: 25.5,
       y: 27,
       info: 'Párrafo con información de la prueba',
-      characters: [TRAINERS.CLARA, TRAINERS.SERGIO],
+      characters: [TRAINERS.ANDREA, TRAINERS.JAIME, TRAINERS.SORAYA],
       badge: BADGES.BADGE_4,
     },
     {
@@ -62,7 +62,7 @@ export class InteractiveMapComponent {
       x: 23.5,
       y: 32,
       info: 'Párrafo con información de la prueba',
-      characters: [TRAINERS.ANDREA, TRAINERS.JAIME, TRAINERS.SORAYA],
+      characters: [TRAINERS.CLARA, TRAINERS.SERGIO],
       badge: BADGES.BADGE_7,
     },
     {
