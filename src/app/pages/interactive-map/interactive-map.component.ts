@@ -37,7 +37,7 @@ export class InteractiveMapComponent {
       id: '5',
       x: 20,
       y: 16,
-      info: 'Párrafo con información de la prueba',
+      info: 'En Paldea aprendí que no basta con tener criaturas fuertes, hay que tener estrategia. ¿Te atreves a medirte conmigo en un verdadero combate Pokémon?',//Combate pokémon
       characters: [TRAINERS.ANDRES],
       badge: BADGES.BADGE_5,
     },
@@ -53,8 +53,8 @@ export class InteractiveMapComponent {
       id: '4',
       x: 25.5,
       y: 27,
-      info: 'Párrafo con información de la prueba',
-      characters: [TRAINERS.ANDREA, TRAINERS.JAIME, TRAINERS.SORAYA],
+      info: 'El eco de tu triunfo no siempre se escucha en el estadio… a veces se mide en aplausos invisibles. Haz que tu imagen conquiste a la multitud.',
+      characters: [TRAINERS.ANDREA, TRAINERS.JAIME, TRAINERS.SORAYA],//Foto a redes que llegue a X likes
       badge: BADGES.BADGE_4,
     },
     {
@@ -76,7 +76,7 @@ export class InteractiveMapComponent {
       id: '3',
       x: 40.5,
       y: 28,
-      info: 'Párrafo con información de la prueba',
+      info: 'La melodía de la victoria no siempre es heroica. Incluso un canto infantil puede rugir como un trueno si lo tocas con cuerdas de acero.',//Baby shark con la guitarra
       characters: [TRAINERS.RU],
       badge: BADGES.BADGE_3,
     },
@@ -100,7 +100,7 @@ export class InteractiveMapComponent {
       id: '8',
       x: 41.5,
       y: 42.5,
-      info: 'Párrafo con información de la prueba',
+      info: 'Dicen que para alcanzar la gloria basta con dar en el blanco, no siempre en el corazón. Apunta firme… aunque no seas Robin Hood.',//Tiro con arco
       characters: [TRAINERS.NOAH],
       badge: BADGES.BADGE_8,
     },
