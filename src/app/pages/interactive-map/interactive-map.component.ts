@@ -76,7 +76,7 @@ export class InteractiveMapComponent {
       id: '3',
       x: 40.5,
       y: 28,
-      info: 'La melodía de la victoria no siempre es heroica. Incluso un canto infantil puede rugir como un trueno si lo tocas con cuerdas de acero.',//Baby shark con la guitarra
+      info: 'La melodía de la victoria no siempre es heróica. Incluso un canto infantil puede rugir como un trueno si lo tocas con cuerdas de acero.',//Baby shark con la guitarra
       characters: [TRAINERS.RU],
       badge: BADGES.BADGE_3,
     },
