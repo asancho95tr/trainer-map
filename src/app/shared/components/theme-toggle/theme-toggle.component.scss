@@ -58,6 +58,30 @@
   background: white;
   border: 3px solid black;
 }
+/* Stripes extra */
+.pokeball.superball::before,
+.pokeball.superball::after {
+  box-shadow: none;
+}
+
+.pokeball.superball .stripe {
+  position: absolute;
+  top: 15%;
+  width: 30%;
+  height: 10%;
+  background: red;
+  border: 2px solid #1e90ff;
+  border-radius: 20px;
+}
+
+.pokeball.superball .stripe.left {
+  left: 0%;
+  transform: rotate(-135deg);
+}
+.pokeball.superball .stripe.right {
+  right: 0%;
+  transform: rotate(135deg);
+}
 
 /* --- Ultraball --- */
 .pokeball.ultraball {
