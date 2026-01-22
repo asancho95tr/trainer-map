@@ -10,5 +10,5 @@ export const environment = {
     measurementId: 'G-Q6PP5XTK5X',
   },
   baseUrl: 'http://localhost:3000/api',
-  theme: 'dark',
+  theme: 'default',
 };
