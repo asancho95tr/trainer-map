@@ -45,6 +45,20 @@
   background: linear-gradient(to bottom, red 50%, white 50%);
 }
 
+/* --- Superball (normal) --- */
+.pokeball.superball {
+  background: linear-gradient(to bottom, #1e90ff 50%, white 50%);
+}
+
+.pokeball.superball::before {
+  background: black;
+}
+
+.pokeball.superball::after {
+  background: white;
+  border: 3px solid black;
+}
+
 /* --- Ultraball --- */
 .pokeball.ultraball {
   background: linear-gradient(to bottom, black 50%, white 50%);

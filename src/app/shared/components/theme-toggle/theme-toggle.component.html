@@ -1,6 +1,7 @@
 <div class="pokeball-wrapper">
   <div class="pokeball" 
-       [class.ultraball]="isDark()" 
+       [class.ultraball]="theme() === 'dark'"
+      [class.superball]="theme() === 'light'"
        [class.spin]="isSpinning"
        (animationend)="onAnimationEnd()"
        (click)="toggleTheme()">

@@ -40,6 +40,7 @@ export class InteractiveMapComponent {
       info: 'En Paldea aprendí que no basta con tener criaturas fuertes, hay que tener estrategia. ¿Te atreves a medirte conmigo en un verdadero combate Pokémon?',//Combate pokémon
       characters: [TRAINERS.ANDRES],
       badge: BADGES.BADGE_5,
+      color: 'pink'
     },
     {
       id: '2',
@@ -48,22 +49,25 @@ export class InteractiveMapComponent {
       info: 'Párrafo con información de la prueba',
       characters: [TRAINERS.SOF, TRAINERS.SIL, TRAINERS.LUIS],
       badge: BADGES.BADGE_2,
+      color: 'aqua'
     },
     {
-      id: '4',
+      id: '7',
       x: 25.5,
       y: 27,
       info: 'El eco de tu triunfo no siempre se escucha en el estadio… a veces se mide en aplausos invisibles. Haz que tu imagen conquiste a la multitud.',
       characters: [TRAINERS.ANDREA, TRAINERS.JAIME, TRAINERS.SORAYA],//Foto a redes que llegue a X likes
-      badge: BADGES.BADGE_4,
+      badge: BADGES.BADGE_7,
+      color: 'red'
     },
     {
-      id: '7',
+      id: '4',
       x: 23.5,
       y: 32,
       info: 'Párrafo con información de la prueba',
       characters: [TRAINERS.CLARA, TRAINERS.SERGIO],
-      badge: BADGES.BADGE_7,
+      badge: BADGES.BADGE_4,
+      color: 'green'
     },
     {
       id: '0',
@@ -80,6 +84,7 @@ export class InteractiveMapComponent {
       info: 'Bienvenidos al gimnasio Aguilar. Todas las salidas están selladas y solo tocar la canción mágica disipará la maldición y evitará que seais deborados por los temibles tiburones de la estanca.',
       characters: [TRAINERS.RU],
       badge: BADGES.BADGE_3,
+      color: 'yellow'
     },
     {
       id: '6',
@@ -88,6 +93,7 @@ export class InteractiveMapComponent {
       info: 'Párrafo con información de la prueba',
       characters: [TRAINERS.IRINA_Y_DAVID],
       badge: BADGES.BADGE_6,
+      color: 'black'
     },
     {
       id: '1',
@@ -96,6 +102,7 @@ export class InteractiveMapComponent {
       info: 'Párrafo con información de la prueba',
       characters: [TRAINERS.LU],
       badge: BADGES.BADGE_1,
+      color: 'brown'
     },
     {
       id: '8',
@@ -104,8 +111,20 @@ export class InteractiveMapComponent {
       info: 'Dicen que para alcanzar la gloria basta con dar en el blanco, no siempre en el corazón. Apunta firme… aunque no seas Robin Hood.',//Tiro con arco
       characters: [TRAINERS.NOAH],
       badge: BADGES.BADGE_8,
+      color: 'purple'
     },
-  ];
+  ].map((marker) => { 
+    if(environment.theme === 'default') {
+      return {
+        ...marker,
+        x: marker.x + 1,
+        y: marker.y - 3
+      }
+    }
+    return {
+      ...marker
+    }
+});
   selectedMarker?: Marker;
   @ViewChild('mapImage') mapImage?: ElementRef<HTMLDivElement>;
 

@@ -11,7 +11,7 @@
       <!-- Marcadores -->
       @for (marker of markers; track marker; let i = $index) {
       <div
-        class="marker"
+        class="marker marker--{{marker.color}}"
         [class.player]="marker.characters === junBarCharacter?.characters"
         [style.left.%]="marker.x"
         [style.top.%]="marker.y"

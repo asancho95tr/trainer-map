@@ -37,8 +37,40 @@ app-theme-toggle {
       transition: transform 0.2s, color 0.2s;
 
       &.player {
-        color: blue;
+        color: #0000ff;
       }
+
+      // &--red {
+      //   color: #ff0000;
+      // }
+
+      // &--green {
+      //   color: #008000;
+      // }
+
+      // &--yellow {
+      //   color: #ff8800;
+      // }
+
+      // &--pink {
+      //   color: #ff00ff;
+      // }
+
+      // &--purple {
+      //   color: #8000ff;
+      // }
+
+      // &--black {
+      //   color: #000000;
+      // }
+      
+      // &--brown {
+      //   color: #a52a2a;
+      // }
+
+      // &--aqua {
+      //   color: #00ffff;
+      // }
 
       &:hover {
         transform: translate(-50%, -50%) scale(1.3);

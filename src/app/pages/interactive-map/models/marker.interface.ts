@@ -5,6 +5,7 @@ export interface Marker {
   info: string;
   characters: Character[];
   badge?: Badge; // medalla asociada
+  color?: string;
 }
 
 export interface Badge {
