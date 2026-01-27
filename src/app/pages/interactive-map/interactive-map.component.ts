@@ -90,7 +90,7 @@ export class InteractiveMapComponent {
       id: '6',
       x: 48,
       y: 37,
-      info: 'Párrafo con información de la prueba',
+      info: 'Algunos desafíos no se superan con fuerza, sino recordando cómo era jugar sin preocuparse por nada. Volver a correr, subir y deslizarse como cuando todo era más simple puede ser la clave para seguir avanzando.',
       characters: [TRAINERS.IRINA_Y_DAVID],
       badge: BADGES.BADGE_6,
       color: 'black'
