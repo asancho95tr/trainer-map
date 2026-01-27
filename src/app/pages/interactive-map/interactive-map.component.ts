@@ -80,8 +80,8 @@ export class InteractiveMapComponent {
       id: '3',
       x: 40.5,
       y: 28,//Baby shark con la guitarra
-      // info: 'La melodía de la victoria no siempre es heróica. Incluso un canto infantil puede rugir como un trueno si lo tocas con cuerdas de acero.',//Baby shark con la guitarra
-      info: 'Bienvenidos al gimnasio Aguilar. Todas las salidas están selladas y solo tocar la canción mágica disipará la maldición y evitará que seais deborados por los temibles tiburones de la estanca.',
+      // info: 'La melodía de la victoria no siempre es heróica. Incluso un canto infantil puede rugir como un trueno si lo tocas con cuerdas de acero.',
+      info: 'Bienvenidos al gimnasio Aguilar. Todas las salidas están selladas y solo tocar la canción mágica disipará la maldición y evitará que seais devorados por los temibles tiburones de la estanca.',
       characters: [TRAINERS.RU],
       badge: BADGES.BADGE_3,
       color: 'yellow'
