@@ -2,8 +2,13 @@
   <button class="draw-button" (click)="draw()">Echar cartas</button>
 
   <div class="cards-grid">
-    @for (card of cards(); track card.id) {
-      <app-tarot-card [card]="card"></app-tarot-card>
+    @for (drawn of cards(); track drawn.card.id) {
+        @let card = drawn.card;
+        @if(card.isMayor) {
+            <app-tarot-card [card]="card"></app-tarot-card>
+        } @else {
+            <app-minor-card [card]="card"></app-minor-card>
+        }
     }
   </div>
     <span [innerHTML]="interpretation()"></span>

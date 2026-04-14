@@ -178,3 +178,11 @@ export const TAROT_CARDS: TarotCard[] = [
         reversed_text: 'Falta de cierre o metas incompletas.'
     }
 ];
+
+export const POSITION_MEANINGS: Record<string, string> = {
+    past: 'Lo que vienes arrastrando',
+    present: 'Tu situación actual',
+    future: 'Hacia dónde te diriges',
+    advice: 'Lo que deberías hacer',
+    outcome: 'Lo que puede ocurrir'
+};

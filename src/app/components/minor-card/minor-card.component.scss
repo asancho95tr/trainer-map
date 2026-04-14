@@ -1,0 +1,38 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  text-align: center;
+  
+    .card {
+    width: 120px;
+    height: 180px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+
+        &:hover {
+        transform: scale(1.05);
+        }
+
+        &.reversed {
+        transform: rotate(180deg);
+        }
+
+        &.reversed:hover {
+        transform: rotate(180deg) scale(1.05);
+        }
+    }
+}
+
+/* Palos */
+.copas { background: #3b82f6; }     /* azul */
+.oros { background: #eab308; }      /* dorado */
+.espadas { background: #6b7280; }   /* gris */
+.bastos { background: #22c55e; }    /* verde */

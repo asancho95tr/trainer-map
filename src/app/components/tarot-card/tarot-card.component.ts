@@ -1,5 +1,5 @@
-import { Component, input, ChangeDetectionStrategy } from '@angular/core';
-import { TarotCard } from '../../models/tarot-card.interface';
+import { Component, input, ChangeDetectionStrategy, computed } from '@angular/core';
+import { Card, TarotCard } from '../../models/tarot-card.interface';
 
 @Component({
   selector: 'app-tarot-card',
@@ -9,5 +9,6 @@ import { TarotCard } from '../../models/tarot-card.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TarotCardComponent {
-  card = input.required<TarotCard & { reversed?: boolean }>();
+  card = input.required<Card>();
+  mayorCard = computed(() => this.card() as TarotCard);
 }
