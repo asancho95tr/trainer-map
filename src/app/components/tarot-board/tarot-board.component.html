@@ -1,0 +1,10 @@
+<div class="tarot-board">
+  <button class="draw-button" (click)="draw()">Echar cartas</button>
+
+  <div class="cards-grid">
+    @for (card of cards(); track card.id) {
+      <app-tarot-card [card]="card"></app-tarot-card>
+    }
+    <span>{{interpretation()}}</span>
+  </div>
+</div>

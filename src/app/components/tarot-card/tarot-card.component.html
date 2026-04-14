@@ -1,0 +1,7 @@
+<div class="card-container">
+  <div class="card" [class.reversed]="card().reversed">
+    <img [src]="card().image" [alt]="card().name">
+  </div>
+  <h3>{{ card().name }}</h3>
+  <p class="meaning">{{ card().meaning }}</p>
+</div>

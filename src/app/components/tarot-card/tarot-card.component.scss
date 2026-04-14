@@ -1,0 +1,44 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  text-align: center;
+
+  .card {
+    width: 150px;
+    height: 220px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &.reversed {
+      transform: rotate(180deg);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  h3 {
+    margin: 0.5rem 0 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .meaning {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+  }
+}
