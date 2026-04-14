@@ -5,6 +5,6 @@
     @for (card of cards(); track card.id) {
       <app-tarot-card [card]="card"></app-tarot-card>
     }
-    <span>{{interpretation()}}</span>
   </div>
+    <span [innerHTML]="interpretation()"></span>
 </div>

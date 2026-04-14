@@ -7,12 +7,13 @@ import { TarotCardComponent } from '../tarot-card/tarot-card.component';
   selector: 'app-tarot-board',
   imports: [TarotCardComponent],
   templateUrl: './tarot-board.component.html',
+  styleUrls: ['./tarot-board.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TarotBoardComponent {
 
   cards = signal<(TarotCard)[]>([]);
-  interpretation = computed(() =>this.cards().map(c => c.meaning).join(', '));
+  interpretation = computed(() =>this.cards().map(c => (`<strong>${c.name}:</strong> ${c.reversed ? c.reversed_text : c.text}`)).join('<br/>'));
 
   constructor(private tarotService: TarotService) { }
 
