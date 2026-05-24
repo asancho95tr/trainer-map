@@ -10,13 +10,8 @@
 
       <!-- Marcadores -->
       @for (marker of markers; track marker; let i = $index) {
-      <div
-        class="marker marker--{{marker.color}}"
-        [class.player]="marker.id === '0'"
-        [style.left.%]="marker.x"
-        [style.top.%]="marker.y"
-        (click)="selectMarker(marker); $event.stopPropagation()"
-      >
+      <div class="marker marker--{{marker.color}}" [class.player]="marker.id === '0'" [style.left.%]="marker.x"
+        [style.top.%]="marker.y" (click)="selectMarker(marker); $event.stopPropagation()">
         ●
       </div>
       }
@@ -25,103 +20,85 @@
   </div>
 
   <!-- Panel fijo de información -->
-  <div
-    class="info-panel"
-    [style.height]="'calc(100vh - ' + (mapImageHeight() + 80) + 'px)'"
-  >
-  <!-- Jun y Bar -->
+  <div class="info-panel" [style.height]="'calc(100vh - ' + (mapImageHeight() + 80) + 'px)'">
+    <!-- Jun y Bar -->
     @if(selectedMarker) {
-      @if(selectedMarker.id === '0') {
-        <h3>Medallas obtenidas</h3>
-        <div class="badges">
-          @for (badge of BADGES_LIST; track badge) {
-          <img
-            [src]="badge.image | noCache"
-            alt="{{ badge.name }}"
-            class="badge-image"
-            [ngClass]="{
+    @if(selectedMarker.id === '0') {
+    <h3>Medallas obtenidas</h3>
+    <div class="badges">
+      @for (badge of BADGES_LIST; track badge) {
+      <img [src]="badge.image | noCache" alt="{{ badge.name }}" class="badge-image" [ngClass]="{
               locked: !obtainedBadges().includes(badge)
-            }"
-          />
-          }
-        </div>
-        @for (entry of selectedMarker.entries; track entry) {
-        <div class="entry">
-          <div class="images">
-            @for (character of entry.characters; track character) {
-            <div class="images__trainer">
-              <img
-                class="character"
-                [src]="character.image | noCache"
-                alt="{{ character.name }}"
-              />
-              <h3>{{ character.name }}</h3>
-            </div>
-            }
-          </div>
-          @if(showClue && entry.info) {
-          <p>{{ entry.info }}</p>
-          }
-        </div>
-        }
-      } @else {
-        @if(badgeEntries.length > 0) {
-          <!-- Líder de una medalla -->
-          @if(badgeEntries.length === 1) {
-          <div class="badge">
-            @let badge = badgeEntries[0].badge!;
-            <h3>Medalla {{ badge.name }}</h3>
-            <img
-              [ngClass]="{
-                locked: obtainedBadges().includes(badge)
-              }"
-              [src]="badge.image | noCache"
-              alt="{{ badge.name }}"
-            />
-          </div>
-          } @else {
-          <!-- Líder de más de una medalla -->
-          <h3>Medallas {{ badgeNames }}</h3>
-          <div class="multiple-badges">
-            @for (entry of badgeEntries; track entry) {
-              @let badge = entry.badge!;
-            <img
-              [ngClass]="{
-                locked: obtainedBadges().includes(badge)
-              }"
-              [src]="badge.image | noCache"
-              alt="{{ badge.name }}"
-              class="badge-image"
-            />
-            }
-          </div>
-          }
-        }
-        @for (entry of selectedMarker.entries; track entry) {
-        <div class="entry">
-          <div class="images">
-            @for (character of entry.characters; track character) {
-            <div class="images__trainer">
-              <img
-                class="character"
-                [src]="character.image | noCache"
-                alt="{{ character.name }}"
-              />
-              <h3>{{ character.name }}</h3>
-            </div>
-            }
-          </div>
-          @if(showClue && entry.info) {
-          <p>{{ entry.info }}</p>
-          }
-        </div>
-        }
+            }" />
       }
-      @if(!showClue) {
-      <button (click)="obtainClue()">Obtener pista</button>
+    </div>
+    @for (entry of selectedMarker.entries; track entry) {
+    <div class="entry">
+      <div class="images">
+        @for (character of entry.characters; track character) {
+        <div class="images__trainer">
+          <img class="character" [src]="character.image | noCache" alt="{{ character.name }}" />
+          <h3>{{ character.name }}</h3>
+        </div>
+        }
+      </div>
+      @if(showClue && entry.info) {
+      <p>{{ entry.info }}</p>
       }
+    </div>
+    }
+    } @else {
+    @if(badgeEntries.length > 0) {
+    <!-- Líder de una medalla -->
+    @if(badgeEntries.length === 1) {
+    <div class="badge">
+      @let badge = badgeEntries[0].badge!;
+      <h3>Medalla {{ badge.name }}</h3>
+      <img [ngClass]="{
+                locked: obtainedBadges().includes(badge)
+              }" [src]="badge.image | noCache" alt="{{ badge.name }}" />
+    </div>
+    } @else {
+    <!-- Líder de más de una medalla -->
+    <h3>Medallas {{ badgeNames }}</h3>
+    <div class="multiple-badges">
+      @for (entry of badgeEntries; track entry) {
+      @let badge = entry.badge!;
+      <img [ngClass]="{
+                locked: obtainedBadges().includes(badge)
+              }" [src]="badge.image | noCache" alt="{{ badge.name }}" class="badge-image" />
+      }
+    </div>
+    }
+    }
+    @for (entry of selectedMarker.entries; track entry) {
+    <div class="entry">
+      <div class="images">
+        @for (character of entry.characters; track character) {
+        <div class="images__trainer">
+          <img class="character" [src]="character.image | noCache" alt="{{ character.name }}" />
+          <h3>{{ character.name }}</h3>
+        </div>
+        }
+      </div>
+      @if(showClue && entry.info) {
+      <p>{{ entry.info }}</p>
+      }
+    </div>
+    }
+    }
+    @if(!showClue) {
+    <button (click)="obtainClue()">Obtener pista</button>
+    }
     } @if(!selectedMarker) {
     <p>Explora los gimnasios haciendo pulsando en los marcadores para ver detalles y obtener pistas de los desafíos.</p>
+
+    <div class="info-panel__help">
+      <div class="info-panel__help__button" (click)="downloadInstructions()">
+        <img class="info-panel__help__button__unown" [src]="'assets/unown-question.png'" />
+      </div>
+      <span>¿Necesitas ayuda?</span>
+    </div>
     }
   </div>
 </div>

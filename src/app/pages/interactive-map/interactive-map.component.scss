@@ -3,6 +3,7 @@ app-theme-toggle {
   top: 12px;
   right: 12px;
 }
+
 .image-wrapper {
   flex: 2.3;
   min-width: 0;
@@ -13,13 +14,11 @@ app-theme-toggle {
     height: auto;
     border: 4px solid #3b3b3b;
     image-rendering: pixelated;
-    background: repeating-linear-gradient(
-      45deg,
-      #eaeaea,
-      #eaeaea 2px,
-      #dcdcdc 2px,
-      #dcdcdc 4px
-    );
+    background: repeating-linear-gradient(45deg,
+        #eaeaea,
+        #eaeaea 2px,
+        #dcdcdc 2px,
+        #dcdcdc 4px);
 
     img {
       width: 100%;
@@ -63,7 +62,7 @@ app-theme-toggle {
       // &--black {
       //   color: #000000;
       // }
-      
+
       // &--brown {
       //   color: #a52a2a;
       // }
@@ -97,6 +96,43 @@ app-theme-toggle {
   @media (max-width: 768px) {
     width: auto;
     margin-top: 8px;
+  }
+
+  &__help {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+
+    &__button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      border-radius: 50%;
+      padding: 4px;
+      border: 1px solid #000;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      transition: all 0.2s ease; // Añade transición suave
+
+      &__unown {
+        width: auto;
+        height: 24px;
+      }
+
+      &:hover {
+        transform: scale(1.15); // Escala en lugar de cambiar tamaño
+        background-color: #f0f0f0; // Cambia fondo ligeramente
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); // Añade sombra
+        border-color: #333; // Borde más oscuro
+      }
+
+      &:active {
+        transform: scale(0.95); // Efecto de presión
+      }
+    }
   }
 
   .badge {
@@ -149,11 +185,13 @@ app-theme-toggle {
     flex-direction: column;
     align-items: center;
     column-gap: 8px;
+
     &__trainer {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     .character {
       margin-top: 16px;
       height: 180px;
@@ -161,6 +199,7 @@ app-theme-toggle {
       border: 2px solid #555;
       background: #fff;
     }
+
     h3 {
       margin-top: 8px;
       text-align: center;
@@ -175,25 +214,25 @@ app-theme-toggle {
 }
 
 /* Escritorio / tablet */
-@media only screen and (min-width: 768px){
+@media only screen and (min-width: 768px) {
   .info-panel {
     min-height: 360px;
   }
 }
 
-      .locked {
-        filter: grayscale(100%) brightness(0.6) contrast(1.2);
-        opacity: 0.6;
+.locked {
+  filter: grayscale(100%) brightness(0.6) contrast(1.2);
+  opacity: 0.6;
 
-        &::after {
-          content: "🔒";
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          font-size: 32px;
-          transform: translate(-50%, -50%);
-          color: #000;
-          text-shadow: 1px 1px 2px #fff;
-          pointer-events: none;
-        }
-      }
+  &::after {
+    content: "🔒";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 32px;
+    transform: translate(-50%, -50%);
+    color: #000;
+    text-shadow: 1px 1px 2px #fff;
+    pointer-events: none;
+  }
+}

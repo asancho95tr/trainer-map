@@ -23,6 +23,7 @@ import { Bagdes } from '@app/models/badges.enum';
 import { Router } from '@angular/router';
 import { environment } from '@environments/environment';
 import { ThemeToggleComponent } from '@app/shared/components/theme-toggle/theme-toggle.component';
+import { downloadDocumentFromAssets } from '@app/utils/download-document.util';
 
 @Component({
   selector: 'app-interactive-map',
@@ -252,5 +253,10 @@ export class InteractiveMapComponent implements AfterViewInit {
         ...new Set(cluesIds)
       ]);
     });
+  }
+
+  downloadInstructions() {
+    this.soundService.play('assets/sounds/menu.mp3');
+    downloadDocumentFromAssets('document.pdf', "🎁 Guía del regalo de boda - ¡Edición Pokémon!");
   }
 }
