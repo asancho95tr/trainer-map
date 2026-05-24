@@ -12,7 +12,7 @@
       @for (marker of markers; track marker; let i = $index) {
       <div
         class="marker marker--{{marker.color}}"
-        [class.player]="marker.characters === junBarCharacter?.characters"
+        [class.player]="marker.id === '0'"
         [style.left.%]="marker.x"
         [style.top.%]="marker.y"
         (click)="selectMarker(marker); $event.stopPropagation()"
@@ -27,49 +27,101 @@
   <!-- Panel fijo de información -->
   <div
     class="info-panel"
-    [style.height]="'calc(100vh - ' + (mapImageHeight + 80) + 'px)'"
+    [style.height]="'calc(100vh - ' + (mapImageHeight() + 80) + 'px)'"
   >
-    @if(selectedMarker) { @if(selectedMarker.badge) {
-    <div class="badge">
-      <h3>Medalla {{ selectedMarker.badge.name }}</h3>
-      <img
-        [src]="selectedMarker.badge.image | noCache"
-        alt="{{ selectedMarker.badge.name }}"
-      />
-    </div>
-    } @if(selectedMarker.characters === junBarCharacter?.characters) {
-    <h3>Medallas obtenidas</h3>
-    <div class="badges">
-      @for (badge of BADGES_LIST; track badge) {
-      <img
-        [src]="badge.image | noCache"
-        alt="{{ badge.name }}"
-        class="badge-image"
-        [ngClass]="{
-          locked: !obtainedBadges().includes(badge)
-        }"
-      />
+  <!-- Jun y Bar -->
+    @if(selectedMarker) {
+      @if(selectedMarker.id === '0') {
+        <h3>Medallas obtenidas</h3>
+        <div class="badges">
+          @for (badge of BADGES_LIST; track badge) {
+          <img
+            [src]="badge.image | noCache"
+            alt="{{ badge.name }}"
+            class="badge-image"
+            [ngClass]="{
+              locked: !obtainedBadges().includes(badge)
+            }"
+          />
+          }
+        </div>
+        @for (entry of selectedMarker.entries; track entry) {
+        <div class="entry">
+          <div class="images">
+            @for (character of entry.characters; track character) {
+            <div class="images__trainer">
+              <img
+                class="character"
+                [src]="character.image | noCache"
+                alt="{{ character.name }}"
+              />
+              <h3>{{ character.name }}</h3>
+            </div>
+            }
+          </div>
+          @if(showClue && entry.info) {
+          <p>{{ entry.info }}</p>
+          }
+        </div>
+        }
+      } @else {
+        @if(badgeEntries.length > 0) {
+          <!-- Líder de una medalla -->
+          @if(badgeEntries.length === 1) {
+          <div class="badge">
+            @let badge = badgeEntries[0].badge!;
+            <h3>Medalla {{ badge.name }}</h3>
+            <img
+              [ngClass]="{
+                locked: obtainedBadges().includes(badge)
+              }"
+              [src]="badge.image | noCache"
+              alt="{{ badge.name }}"
+            />
+          </div>
+          } @else {
+          <!-- Líder de más de una medalla -->
+          <h3>Medallas {{ badgeNames }}</h3>
+          <div class="multiple-badges">
+            @for (entry of badgeEntries; track entry) {
+              @let badge = entry.badge!;
+            <img
+              [ngClass]="{
+                locked: obtainedBadges().includes(badge)
+              }"
+              [src]="badge.image | noCache"
+              alt="{{ badge.name }}"
+              class="badge-image"
+            />
+            }
+          </div>
+          }
+        }
+        @for (entry of selectedMarker.entries; track entry) {
+        <div class="entry">
+          <div class="images">
+            @for (character of entry.characters; track character) {
+            <div class="images__trainer">
+              <img
+                class="character"
+                [src]="character.image | noCache"
+                alt="{{ character.name }}"
+              />
+              <h3>{{ character.name }}</h3>
+            </div>
+            }
+          </div>
+          @if(showClue && entry.info) {
+          <p>{{ entry.info }}</p>
+          }
+        </div>
+        }
       }
-    </div>
-    }
-    <div class="images">
-      @for (character of selectedMarker.characters; track character) {
-      <div class="images__trainer">
-        <img
-          class="character"
-          [src]="character.image | noCache"
-          alt="{{ character.name }}"
-        />
-        <h3>{{ character.name }}</h3>
-      </div>
+      @if(!showClue) {
+      <button (click)="obtainClue()">Obtener pista</button>
       }
-    </div>
-    @if(showClue) {
-    <p>{{ selectedMarker.info }}</p>
-    } @else {
-    <button (click)="obtainClue()">Obtener pista</button>
-    } } @if(!selectedMarker) {
-    <p>Haz clic en un marcador para ver los detalles.</p>
+    } @if(!selectedMarker) {
+    <p>Explora los gimnasios haciendo pulsando en los marcadores para ver detalles y obtener pistas de los desafíos.</p>
     }
   </div>
 </div>

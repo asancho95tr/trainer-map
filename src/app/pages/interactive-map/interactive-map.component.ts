@@ -5,6 +5,7 @@ import {
   signal,
   ViewChild,
   WritableSignal,
+  AfterViewInit,
 } from '@angular/core';
 import { NoCachePipe } from '@shared/pipes/no-cache.pipe';
 import { TRAINERS, BADGES, BADGES_LIST } from '@utils/constants';
@@ -14,6 +15,7 @@ import { PaperComponent } from './components/paper/paper.component';
 import {
   Badge,
   Marker,
+  MarkerEntry,
 } from '@app/pages/interactive-map/models/marker.interface';
 import { Database } from '@angular/fire/database';
 import { onValue, ref } from 'firebase/database';
@@ -28,7 +30,7 @@ import { ThemeToggleComponent } from '@app/shared/components/theme-toggle/theme-
   styleUrls: ['./interactive-map.component.scss'],
   imports: [NoCachePipe, NgClass, PaperComponent, ThemeToggleComponent],
 })
-export class InteractiveMapComponent {
+export class InteractiveMapComponent implements AfterViewInit {
   get imageSrc() {
     return `assets/map-${environment.theme}.png`;
   }
@@ -37,80 +39,125 @@ export class InteractiveMapComponent {
       id: '5',
       x: 20,
       y: 16,//Combate pokémon
-      info: 'En Paldea aprendí que no basta con tener criaturas fuertes, hay que tener estrategia. ¿Te atreves a medirte conmigo en un verdadero combate Pokémon?',//Combate pokémon
-      characters: [TRAINERS.ANDRES],
-      badge: BADGES.BADGE_5,
+      entries: [
+        {
+          badge: BADGES.BADGE_5,
+          info: 'En Paldea aprendí que no basta con tener criaturas fuertes, hay que tener estrategia. ¿Te atreves a medirte conmigo en un verdadero combate Pokémon?',
+          characters: [TRAINERS.ANDRES/**, TRAINERS.SIL*/],
+        },
+      ],
       color: 'pink'
     },
     {
       id: '2',
       x: 76.5,
       y: 90.5,//Componer y cantar una canción a lo HSM
-      info: 'En este gimnasio no basta con fuerza ni estrategia… aquí el corazón marca el ritmo. Si puedes cantar lo que sientes y hacerlo brillar como en un musical, quizá estés listo para continuar.',
-      characters: [TRAINERS.SOF, TRAINERS.SIL, TRAINERS.LUIS],
-      badge: BADGES.BADGE_2,
+      entries: [
+        {
+          badge: BADGES.BADGE_2,
+          info: 'En este gimnasio no basta con fuerza ni estrategia… aquí el corazón marca el ritmo. Si puedes cantar lo que sientes y hacerlo brillar como en un musical, quizá estés listo para continuar.',
+          characters: [TRAINERS.SOF, TRAINERS.SIL, TRAINERS.LUIS],
+        },
+      ],
       color: 'aqua'
     },
+    // {
+    //   id: '2',
+    //   x: 60,
+    //   y: 45,
+    //   entries: [
+    //     {
+    //       badge: BADGES.BADGE_2,
+    //       info: 'Texto pendiente',
+    //       characters: [TRAINERS.JAVI, TRAINERS.TERE],
+    //     },
+    //   ],
+    //   color: 'aqua'
+    // },
     {
       id: '7',
       x: 25.5,
       y: 27,//Foto a redes que llegue a X likes
-      info: 'El eco de tu triunfo no siempre se escucha en el estadio… a veces se mide en aplausos invisibles. Haz que tu imagen conquiste a la multitud.',
-      characters: [TRAINERS.ANDREA, TRAINERS.JAIME, TRAINERS.SORAYA],
-      badge: BADGES.BADGE_7,
+      entries: [
+        {
+          badge: BADGES.BADGE_7,
+          info: 'El eco de tu triunfo no siempre se escucha en el estadio… a veces se mide en aplausos invisibles. Haz que tu imagen conquiste a la multitud.',
+          characters: [TRAINERS.ANDREA, TRAINERS.JAIME, TRAINERS.SORAYA],
+        },
+      ],
       color: 'red'
     },
     {
       id: '4',
       x: 23.5,
       y: 32,//Salir a tomar café en pijama
-      info: 'Los verdaderos entrenadores no temen al qué dirán. A veces, el valor se demuestra saliendo al mundo tal y como eres… incluso antes de cambiarte de ropa.',
-      characters: [TRAINERS.CLARA, TRAINERS.SERGIO],
-      badge: BADGES.BADGE_4,
+      entries: [
+        {
+          badge: BADGES.BADGE_4,
+          info: 'Los verdaderos entrenadores no temen al qué dirán. A veces, el valor se demuestra saliendo al mundo tal y como eres… incluso antes de cambiarte de ropa.',
+          characters: [TRAINERS.CLARA, TRAINERS.SERGIO],
+        },
+      ],
       color: 'green'
     },
     {
       id: '0',
       x: 30,
       y: 37,
-      info: '',
-      characters: [TRAINERS.JUN, TRAINERS.BAR],
+      entries: [
+        {
+          info: '',
+          characters: [TRAINERS.JUN, TRAINERS.BAR],
+        },
+      ],
     },
     {
       id: '3',
       x: 40.5,
-      y: 28,//Baby shark con la guitarra
-      // info: 'La melodía de la victoria no siempre es heróica. Incluso un canto infantil puede rugir como un trueno si lo tocas con cuerdas de acero.',
-      info: 'Bienvenidos al gimnasio Aguilar. Todas las salidas están selladas y solo tocar la canción mágica disipará la maldición y evitará que seais devorados por los temibles tiburones de la estanca.',
-      characters: [TRAINERS.RU],
-      badge: BADGES.BADGE_3,
+      y: 28,
+      entries: [
+        {
+          badge: BADGES.BADGE_1,
+          info: 'El mundo se construyó capa a capa, y solo quienes conocen su historia pueden avanzar. ¿Sabrás distinguir lo que es roca sólida de lo que se desmorona al primer temblor?',
+          characters: [TRAINERS.LU],//Trivial de geología
+        },
+        {
+          badge: BADGES.BADGE_3,
+          info: 'Bienvenidos al gimnasio Aguilar. Todas las salidas están selladas y solo tocar la canción mágica disipará la maldición y evitará que seais devorados por los temibles tiburones de la estanca.',
+          characters: [TRAINERS.RU],//Baby shark con la guitarra
+        },
+      ],
       color: 'yellow'
     },
     {
       id: '6',
       x: 48,
-      y: 37,
-      info: 'Algunos desafíos no se superan con fuerza, sino recordando cómo era jugar sin preocuparse por nada. Volver a correr, subir y deslizarse como cuando todo era más simple puede ser la clave para seguir avanzando.',
-      characters: [TRAINERS.IRINA_Y_DAVID],
-      badge: BADGES.BADGE_6,
+      y: 37,//Fotos en parques
+      entries: [
+        {
+          badge: BADGES.BADGE_6,
+          info: 'Algunos desafíos no se superan con fuerza, sino recordando cómo era jugar sin preocuparse por nada. Volver a correr, subir y deslizarse como cuando todo era más simple puede ser la clave para seguir avanzando.',
+          characters: [TRAINERS.IRINA_Y_DAVID],
+        },
+      ],
       color: 'black'
-    },
-    {
-      id: '1',
-      x: 77.2,
-      y: 26.2,//Trivial de geología
-      info: 'El mundo se construyó capa a capa, y solo quienes conocen su historia pueden avanzar. ¿Sabrás distinguir lo que es roca sólida de lo que se desmorona al primer temblor?',
-      characters: [TRAINERS.LU],
-      badge: BADGES.BADGE_1,
-      color: 'brown'
     },
     {
       id: '8',
       x: 41.5,
       y: 42.5,
-      info: 'Dicen que para alcanzar la gloria basta con dar en el blanco, no siempre en el corazón. Apunta firme… aunque no seas Robin Hood.',//Tiro con arco
-      characters: [TRAINERS.NOAH],
-      badge: BADGES.BADGE_8,//Tiro con arco
+      entries: [
+        {
+          badge: BADGES.BADGE_8,
+          info: 'Ni un Snorlax dormido ni un Machamp musculoso superarían mi gimnasio sin concentración. Aquí pondréis a prueba vuestro equilibrio, vuestra respiración y quizá también vuestros isquiotibiales.',
+          characters: [TRAINERS.NOAH],//Clase de yoga
+        },
+        {
+          badge: undefined,
+          info: 'He oído que en la costa aparecen Diglett gigantes… aunque quizá solo sean negros enterrados hasta el cuello.',
+          characters: [TRAINERS.JAVI, TRAINERS.TERE],//Enterrar a Jun en la playa para que se parezca a Diglett
+        },
+      ],
       color: 'purple'
     },
   ].map((marker) => { 
@@ -130,18 +177,20 @@ export class InteractiveMapComponent {
 
   soundService = inject(SoundService);
 
-  get mapImageHeight() {
-    return this.mapImage?.nativeElement.offsetHeight ?? 0;
-  }
+  mapImageHeight = signal(0);
 
   BADGES_LIST = BADGES_LIST;
 
   get junBarCharacter() {
-    return this.markers.find(
-      (marker) =>
-        marker.characters.includes(TRAINERS.JUN) &&
-        marker.characters.includes(TRAINERS.BAR)
-    );
+    return this.markers.find(marker => marker.id === '0');
+  }
+
+  get badgeEntries(): MarkerEntry[] {
+    return this.selectedMarker?.entries.filter(e => e.badge) || [];
+  }
+
+  get badgeNames(): string {
+    return this.badgeEntries.map(e => e.badge!.name).join(' y ');
   }
 
   db = inject(Database);
@@ -159,6 +208,12 @@ export class InteractiveMapComponent {
   ngOnInit() {
     this.#refreshBadges();
     this.#refreshClues();
+  }
+
+  ngAfterViewInit() {
+    if (this.mapImage) {
+      this.mapImageHeight.set(this.mapImage.nativeElement.offsetHeight);
+    }
   }
   selectMarker(marker: Marker) {
     this.soundService.play('assets/sounds/menu.mp3');

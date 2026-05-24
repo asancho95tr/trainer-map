@@ -2,10 +2,14 @@ export interface Marker {
   id: string;
   x: number; // porcentaje horizontal
   y: number; // porcentaje vertical
+  entries: MarkerEntry[];
+  color?: string;
+}
+
+export interface MarkerEntry {
+  badge?: Badge;
   info: string;
   characters: Character[];
-  badge?: Badge; // medalla asociada
-  color?: string;
 }
 
 export interface Badge {

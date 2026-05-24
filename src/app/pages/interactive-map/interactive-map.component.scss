@@ -111,6 +111,19 @@ app-theme-toggle {
     }
   }
 
+  .multiple-badges {
+    display: flex;
+    column-gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 8px;
+
+    .badge-image {
+      height: 72px;
+      image-rendering: pixelated;
+    }
+  }
+
   .badges {
     display: flex;
     column-gap: 8px;
@@ -122,28 +135,13 @@ app-theme-toggle {
     .badge-image {
       height: 72px;
       image-rendering: pixelated;
-      &.locked {
-        filter: grayscale(100%) brightness(0.6) contrast(1.2);
-        opacity: 0.6;
-
-        &::after {
-          content: "🔒";
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          font-size: 32px;
-          transform: translate(-50%, -50%);
-          color: #000;
-          text-shadow: 1px 1px 2px #fff;
-          pointer-events: none;
-        }
-      }
     }
   }
 
   h3 {
     margin-top: 0;
     text-align: center;
+    line-height: 32px;
   }
 
   .images {
@@ -157,6 +155,7 @@ app-theme-toggle {
       align-items: center;
     }
     .character {
+      margin-top: 16px;
       height: 180px;
       image-rendering: pixelated;
       border: 2px solid #555;
@@ -165,6 +164,7 @@ app-theme-toggle {
     h3 {
       margin-top: 8px;
       text-align: center;
+      line-height: 32px;
     }
   }
 
@@ -180,3 +180,20 @@ app-theme-toggle {
     min-height: 360px;
   }
 }
+
+      .locked {
+        filter: grayscale(100%) brightness(0.6) contrast(1.2);
+        opacity: 0.6;
+
+        &::after {
+          content: "🔒";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          font-size: 32px;
+          transform: translate(-50%, -50%);
+          color: #000;
+          text-shadow: 1px 1px 2px #fff;
+          pointer-events: none;
+        }
+      }

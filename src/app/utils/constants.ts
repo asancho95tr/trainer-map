@@ -17,6 +17,14 @@ export const IRINA_Y_DAVID = {
   name: 'Irina y David',
   image: 'assets/trainers/Irina y David.png',
 };
+export const JAVI = {
+  name: 'Javi',
+  image: 'assets/trainers/Javi.png',
+};
+export const TERE = {
+  name: 'Tere',
+  image: 'assets/trainers/Tere.png',
+};
 
 export const TRAINERS = {
   ANDRES,
@@ -34,6 +42,8 @@ export const TRAINERS = {
   NOAH,
   SORAYA,
   IRINA_Y_DAVID,
+  JAVI,
+  TERE
 };
 
 //Medallas
