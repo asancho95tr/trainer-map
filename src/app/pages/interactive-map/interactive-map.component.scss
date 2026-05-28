@@ -133,6 +133,10 @@ app-theme-toggle {
         transform: scale(0.95); // Efecto de presión
       }
     }
+
+    &__text {
+      font-size: 10px;
+    }
   }
 
   .badge {
